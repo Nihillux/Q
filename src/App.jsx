@@ -1,36 +1,7 @@
-import reactImg from './assets/react-core-concepts.png';
-import componentsImg from './assets/components.png';
-
-const reactDescriptions = ['Fundamental', 'Crucial', 'Core']
-
-function genRamdomInt(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
-
-function Header() {
-  const description = reactDescriptions[genRamdomInt(2)];
-  
-  return (
-    <header>
-      <img src={reactImg} alt="Stylized atom" />
-      <h1>React Essentials</h1>
-      <p>
-        {description} React concepts you will need for almost any app you are
-        going to build!
-      </p>
-    </header>
-  );
-}
-
-function CoreConcept(props) {
-  return (
-    <li>
-      <img src={props.image} alt={props.title} />
-      <h3>{props.title}</h3>
-      <p>{props.description}</p>
-    </li>
-    );
-}
+import { CORE_CONCEPTS } from './data.js';
+import Header from './components/Header/Header.jsx';
+import CoreConcept from './components/CoreConcept.jsx';
+import TabButton from './components/TabButton.jsx';
 
 function App() {
   return (
@@ -40,12 +11,19 @@ function App() {
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcept title="Components" description="Components are the building blocks of any React app." image={componentsImg}/>
-            <CoreConcept title="Props" description="Components are the building blocks of any React app." image={componentsImg}/>
-            <CoreConcept />
+            <CoreConcept title={CORE_CONCEPTS[0].tittle} description={CORE_CONCEPTS[0].description} image={CORE_CONCEPTS[0].image}/>
+            <CoreConcept {...CORE_CONCEPTS[1]}/>
+            <CoreConcept {...CORE_CONCEPTS[2]}/>
+            <CoreConcept {...CORE_CONCEPTS[3]}/>
           </ul>
         </section>
-        <h2>Time to get started!</h2>
+        <section id="examples">
+          <h2>Examples</h2>"
+          <menu>
+            <TabButton>Components</TabButton>
+            <TabButton>Props</TabButton>
+          </menu>
+        </section>
       </main>
     </div>
   );
